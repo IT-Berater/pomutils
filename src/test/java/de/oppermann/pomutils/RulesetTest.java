@@ -87,7 +87,7 @@ public class RulesetTest extends TestCase {
 	}
 
 	private int doMerge(Ruleset ruleset, String basePomFile, String ourPomFile, String theirPomFile) {
-		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile);
+		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile, false);
 		return pomMergeDriver.merge();
 	}
 

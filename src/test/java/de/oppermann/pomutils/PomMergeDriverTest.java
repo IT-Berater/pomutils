@@ -58,7 +58,7 @@ public class PomMergeDriverTest extends TestCase {
 
 		Ruleset ruleset = new Ruleset(SelectionStrategy.OUR);
 
-		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile);
+		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile, false);
 		int mergeReturnValue = pomMergeDriver.merge();
 
 		assertTrue("merge succeeded", mergeReturnValue == 0);
@@ -86,7 +86,7 @@ public class PomMergeDriverTest extends TestCase {
 
 		Ruleset ruleset = new Ruleset(SelectionStrategy.THEIR);
 
-		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile);
+		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile, false);
 		int mergeReturnValue = pomMergeDriver.merge();
 
 		assertTrue("merge succeeded", mergeReturnValue == 0);
@@ -114,7 +114,7 @@ public class PomMergeDriverTest extends TestCase {
 
 		Ruleset ruleset = new Ruleset(SelectionStrategy.PROMPT);
 
-		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile);
+		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile, false);
 		int mergeReturnValue = pomMergeDriver.merge();
 
 		assertTrue("merge succeeded", mergeReturnValue == 0);
@@ -142,7 +142,7 @@ public class PomMergeDriverTest extends TestCase {
 
 		Ruleset ruleset = new Ruleset(SelectionStrategy.PROMPT);
 
-		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile);
+		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile, false);
 		int mergeReturnValue = pomMergeDriver.merge();
 
 		assertTrue("merge succeeded", mergeReturnValue == 0);
@@ -170,7 +170,7 @@ public class PomMergeDriverTest extends TestCase {
 
 		Ruleset ruleset = new Ruleset(SelectionStrategy.THEIR);
 
-		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile);
+		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile, false);
 		int mergeReturnValue = pomMergeDriver.merge();
 
 		assertTrue("merge succeeded", mergeReturnValue == 0);
@@ -197,7 +197,7 @@ public class PomMergeDriverTest extends TestCase {
 
 		Ruleset ruleset = new Ruleset(SelectionStrategy.OUR);
 
-		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile);
+		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile, false);
 		int mergeReturnValue = pomMergeDriver.merge();
 
 		assertTrue("merge conflict", mergeReturnValue == 1);
@@ -221,7 +221,7 @@ public class PomMergeDriverTest extends TestCase {
 
 		Ruleset ruleset = new Ruleset(SelectionStrategy.THEIR);
 
-		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile);
+		PomMergeDriver pomMergeDriver = new PomMergeDriver(ruleset, basePomFile, ourPomFile, theirPomFile, false);
 		int mergeReturnValue = pomMergeDriver.merge();
 
 		assertTrue("merge succeeded", mergeReturnValue == 0);

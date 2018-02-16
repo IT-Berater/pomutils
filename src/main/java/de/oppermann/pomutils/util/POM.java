@@ -30,6 +30,7 @@ import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 
+import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Profile;
 import org.codehaus.mojo.versions.api.PomHelper;
@@ -66,6 +67,7 @@ public class POM {
 	private String parentVersion;
 	private String projectIdentifier;
 	private Model rawModel;
+	private List<Dependency> dependencies;
 
 	public POM(String pomFileAsString) throws IOException, XMLStreamException {
 		pomFile = new File(pomFileAsString);
@@ -82,6 +84,7 @@ public class POM {
 			projectIdentifier = null;
 			projectVersion = "";
 			parentVersion = "";
+			dependencies = new ArrayList<Dependency>(0);
 			return;
 		}
 
@@ -104,6 +107,7 @@ public class POM {
 		parentVersion = rawModel.getParent() != null
 		        ? rawModel.getParent().getVersion()
 		        : null;
+		dependencies = rawModel.getDependencies();
 	}
 
 	private String calculateProjectIdentifier() {

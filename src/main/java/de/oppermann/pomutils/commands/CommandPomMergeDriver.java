@@ -46,10 +46,13 @@ public class CommandPomMergeDriver {
 	private String theirPom;
 
 	@Parameter(names = { "-s", "--select" }, description = "Which version to select to resolve conflicts.  'our', 'their', or 'prompt'.  If 'prompt' is specified, then you will be prompted via stdout/stdin to select a version.", required = false, converter = SelectionStrategyConverter.class)
-	private SelectionStrategy selectionStrategy = SelectionStrategy.OUR;
+	private SelectionStrategy selectionStrategy = SelectionStrategy.DKV;
 
 	@Parameter(names = { "-r", "--ruleset" }, description = "The ruleset to use when you merge poms. If you don't specify a ruleset, a default ruleset will be used. Default is ProjectAndParentVersionRule with our strategy.")
 	private File ruleSetfile;
+
+	@Parameter(names = { "-sg", "--skipGit" }, description = "By default a git merge is performed after the custom merge. Define this options if you do NOT want to perform the git merge afterwards.")
+	private Boolean skipGit = Boolean.FALSE;
 
 	public String getBasePom() {
 		return basePom;
@@ -70,6 +73,8 @@ public class CommandPomMergeDriver {
 	public File getRuleSetFile() {
 		return ruleSetfile;
 	}
+
+	public Boolean getSkipGit() { return skipGit; }
 
 	public Ruleset getRuleSet() {
 		if (getRuleSetFile() == null) {

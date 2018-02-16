@@ -24,6 +24,7 @@ import java.io.IOException;
 
 import javax.xml.stream.XMLStreamException;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.codehaus.plexus.util.IOUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,17 +46,19 @@ public class PomMergeDriver {
 	private final String basePomFile;
 	private final String ourPomFile;
 	private final String theirPomFile;
+	private final Boolean skipGit;
 
-	public PomMergeDriver(Ruleset ruleset, String basePomFile, String ourPomFile, String theirPomFile) {
+	public PomMergeDriver(Ruleset ruleset, String basePomFile, String ourPomFile, String theirPomFile, Boolean skipGit) {
 		this.ruleset = ruleset;
 		this.basePomFile = basePomFile;
 		this.ourPomFile = ourPomFile;
 		this.theirPomFile = theirPomFile;
+		this.skipGit = skipGit;
 	}
 
 	public int merge() {
 		try {
-			logger.debug("Doing merge [our={}] [base={}] [their={}]", ourPomFile,
+			logger.info("Pom merge [our={}] [base={}] [their={}]", ourPomFile,
 			        basePomFile, theirPomFile);
 
 			POM basePom = new POM(basePomFile);
@@ -73,7 +76,13 @@ public class PomMergeDriver {
 			logger.warn("Exception when attempting to merge pom versions.  Falling back to default merge.", e);
 		}
 
-		return doGitMerge();
+		if (BooleanUtils.isFalse(skipGit)) {
+			logger.info("Doing git merge after custom pom merge");
+			return doGitMerge();
+		} else {
+			logger.info("Skipping git merge after custom pom merge.");
+			return 0;
+		}
 	}
 
 	private int doGitMerge() {

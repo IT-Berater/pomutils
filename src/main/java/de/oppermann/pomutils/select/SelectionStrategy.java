@@ -14,6 +14,11 @@ public enum SelectionStrategy {
 	 * Always select 'their' version. 
 	 */
 	THEIR(new TheirVersionSelector()),
+
+	/*
+	 *
+	 */
+	DKV(new DKVVersionSelector()),
 	
 	/**
 	 * Prompt the user via stdout/stdin for them to select the version. 
