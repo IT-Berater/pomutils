@@ -1,0 +1,15 @@
+--- !!de.oppermann.pomutils.rules.ProjectAndParentVersionRule
+strategy: DKV                     # possible values: OUR|THEIR|PROMPT|DKV
+                                  # resolves all parent and project version conflicts, using the *OUR* strategy
+                                  # in .gitattributest
+                                  #[merge "pom"]
+                                    #name = Automatically resolve project and/or parent version conflicts in pom files. The rest is a normal merge.
+                                    #driver = C:/Atlassian/Bitbucket/4.14.3/jre/bin/java.exe -jar C:/Tools/bitbucket-mergetools/pomutils-1.5.0.jar merge --base=%O --our=%A --their=%B --ruleset=C:/Tools/bitbucket-mergetools/ruleset.yaml --skipGit
+--- !!de.oppermann.pomutils.rules.PropertyRule
+strategy : OUR                    # possible values: OUR|THEIR
+properties:                       # resolves the two given properties in the global and profile property section, using the *OUR* strategy
+     - jdbc.user.name
+     - foobar.version
+propertiesRegex:                  # resolves properties in the global and profile property section matching regex expression, using the *OUR* strategy
+     - .+\.version
+

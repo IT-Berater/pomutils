@@ -1,0 +1,5 @@
+[core]
+	attributesfile = C:\\Tools\\bitbucket-mergetools\\.gitattributes
+[merge "pom"]
+	name = Automatically resolve project and/or parent version conflicts in pom files. The rest is a normal merge.
+	driver = C:/Atlassian/Bitbucket/4.14.3/jre/bin/java.exe -jar C:/Tools/bitbucket-mergetools/pomutils-1.5.0.jar merge --base=%O --our=%A --their=%B --select=dkv --skipGit
